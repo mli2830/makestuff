@@ -1,7 +1,7 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: notarget
+target pngtarget pdftarget vtarget acrtarget: Makefile
 
 ##################################################################
 
@@ -13,29 +13,23 @@ Sources = Makefile LICENSE README.md
 
 Sources += makefile.mk
 
+# bootstrap the CP command; anything else?
 ms = ../makestuff
-include $(ms)/local.mk
+Sources += boot.mk
+include boot.mk
+-include $(ms)/local.mk
 
-# Local.mk is made by hand from local.mk.template
+# Local.mk is made by hand from local.mk.template (maybe deprecate, for boot)
 Sources += local.mk.template
-include local.mk
 
 # Bootstrap stuff
 # Want to be able to change this stuff locally
 %.mk: %.mk.template
 	$(CP) $< $@
 
+Sources += linux.mk.template windows.mk.template
+
 # Other makefiles
 
 Sources += git.mk visual.mk
-
-##################################################################
-
-md = ../make/
-rrd = ../RR/
-
-local = default
--include $(md)/local.mk
--include $(md)/$(local).mk
--include $(rrd)/inc.mk
-
+include git.mk
