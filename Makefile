@@ -5,9 +5,29 @@ target pngtarget pdftarget vtarget acrtarget: notarget
 
 ##################################################################
 
-# make files
+# Base files
 
-Sources = Makefile 
+Sources = Makefile LICENSE README.md
+
+# Starting makefile for other projectcs
+
+Sources += makefile.mk
+
+ms = ../makestuff
+include $(ms)/local.mk
+
+# Local.mk is made by hand from local.mk.template
+Sources += local.mk.template
+include local.mk
+
+# Bootstrap stuff
+# Want to be able to change this stuff locally
+%.mk: %.mk.template
+	$(CP) $< $@
+
+# Other makefiles
+
+Sources += git.mk visual.mk
 
 ##################################################################
 
