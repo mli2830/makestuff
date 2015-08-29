@@ -1,6 +1,9 @@
 
-push: commit.time
+newpush: commit.time
 	git push -u origin master
+
+push: commit.time
+	git push
 
 pull: commit.time
 	git pull
@@ -24,3 +27,8 @@ remove:
 forget:
 	git reset --hard
 
+clean_repo_ext:
+	git rm --cached --ignore-unmatch $(filter-out $(Sources), $(wildcard *.*))
+
+clean_main_dir:
+	/bin/rm -f $(filter-out $(Sources), $(wildcard *.*))
