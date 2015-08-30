@@ -33,3 +33,5 @@ Sources += linux.mk.template windows.mk.template
 
 Sources += git.mk visual.mk
 include git.mk
+
+Sources += oldlatex.mk
