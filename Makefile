@@ -29,9 +29,13 @@ Sources += local.mk.template
 
 Sources += linux.mk.template windows.mk.template
 
-# Other makefiles
+######################################################################
 
-Sources += git.mk visual.mk
+# Git makefile for this and other projects
+
+Sources += git.mk
 include git.mk
 
-Sources += oldlatex.mk
+# Makefiles for other projects
+
+Sources += visual.mk oldlatex.mk
