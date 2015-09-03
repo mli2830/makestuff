@@ -39,3 +39,4 @@ include git.mk
 # Makefiles for other projects
 
 Sources += visual.mk oldlatex.mk
+
