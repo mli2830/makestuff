@@ -2,24 +2,20 @@
 newpush: commit.time
 	git push -u origin master
 
-push: commit.time
+push: commit.txt
 	git push
 
-pull: commit.time
+pull: commit.txt
 	git pull
 	touch $<
 
-commit.time: $(Sources)
-	date > $@
+commit.txt: $(Sources)
 	git add $(Sources)
-	$(MAKE) gitcomment.txt
-	git commit -F gitcomment.txt
-	date > $@
-
-gitcomment.txt: $(Sources)
 	echo Autocommit > $@
-	git commit --dry-run >> $@
-	gvim -f gitcomment.txt
+	-git commit --dry-run >> $@
+	gvim -f $@
+	git commit -F $@
+	date >> $@
 
 remove:
 	git rm $(remove)
@@ -27,8 +23,9 @@ remove:
 forget:
 	git reset --hard
 
-clean_repo_ext:
+# Clean all unSourced files (files with extensions only)
+clean_repo:
 	git rm --cached --ignore-unmatch $(filter-out $(Sources), $(wildcard *.*))
 
-clean_main_dir:
+clean_dir:
 	/bin/rm -f $(filter-out $(Sources), $(wildcard *.*))

@@ -7,7 +7,7 @@ target pngtarget pdftarget vtarget acrtarget: Makefile
 
 # Base files
 
-Sources = Makefile LICENSE README.md
+Sources = Makefile LICENSE README.md .gitignore
 
 # Starting makefile for other projectcs
 
