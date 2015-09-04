@@ -9,6 +9,10 @@ pull: commit.txt
 	git pull
 	touch $<
 
+sync: 
+	$(MAKE) pull
+	$(MAKE) push
+
 commit.txt: $(Sources)
 	git add $(Sources)
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@
