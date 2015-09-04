@@ -9,7 +9,7 @@ ms = ../makestuff
 
 -include $(ms)/local.mk
 -include local.mk
--include git.mk
+-include $(ms)/git.mk
 
 -include visual.mk
 # -include linux.mk

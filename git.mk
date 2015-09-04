@@ -17,6 +17,10 @@ commit.txt: $(Sources)
 	-git commit -F $@
 	date >> $@
 
+.gitignore:
+	touch $@
+	-/bin/cp ../$@ .
+
 remove:
 	git rm $(remove)
 
