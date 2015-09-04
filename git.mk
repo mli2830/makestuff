@@ -14,7 +14,7 @@ commit.txt: $(Sources)
 	echo Autocommit > $@
 	-git commit --dry-run >> $@
 	gvim -f $@
-	git commit -F $@
+	-git commit -F $@
 	date >> $@
 
 remove:
