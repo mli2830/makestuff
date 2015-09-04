@@ -11,7 +11,7 @@ Sources = Makefile LICENSE README.md .gitignore
 
 # Starting makefile for other projectcs
 
-Sources += makefile.mk
+Sources += makefile.mk hooks.mk
 
 # bootstrap the CP command; anything else?
 ms = ../makestuff
