@@ -1,5 +1,5 @@
 
-newpush: commit.time
+newpush: commit.txt
 	git push -u origin master
 
 push: commit.txt
