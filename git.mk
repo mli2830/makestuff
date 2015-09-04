@@ -11,7 +11,7 @@ pull: commit.txt
 
 commit.txt: $(Sources)
 	git add $(Sources)
-	echo Autocommit > $@
+	echo "Autocommit ($(notdir $(CURDIR)))" > $@
 	-git commit --dry-run >> $@
 	gvim -f $@
 	-git commit -F $@
