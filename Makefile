@@ -30,7 +30,11 @@ Sources += linux.mk windows.mk
 Sources += git.mk
 include git.mk
 
-# Makefiles for other projects
+# Makefiles and resources for other projects
 
 Sources += visual.mk oldlatex.mk RR.mk
 
+RRR = $(wildcard RR/*.R)
+RRpl = $(wildcard RR/*.pl)
+
+Sources += $(RRR) $(RRpl)
