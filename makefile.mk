@@ -11,7 +11,8 @@ ms = ../makestuff
 -include local.mk
 -include $(ms)/git.mk
 
--include visual.mk
-# -include linux.mk
+-include $(ms)/visual.mk
+# -include $(ms)/linux.mk
 
+# -include $(ms)/RR.mk
 # -include oldlatex.mk

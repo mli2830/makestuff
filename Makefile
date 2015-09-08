@@ -5,6 +5,8 @@ target pngtarget pdftarget vtarget acrtarget: Makefile
 
 ##################################################################
 
+ms = ../makestuff
+
 # Base files
 
 Sources = Makefile LICENSE README.md .gitignore
@@ -12,9 +14,6 @@ Sources = Makefile LICENSE README.md .gitignore
 # Starting makefile for other projectcs
 
 Sources += makefile.mk hooks.mk
-
-# bootstrap the CP command; anything else?
-ms = ../makestuff
 
 # Bootstrap stuff
 # Want to be able to change this stuff locally
