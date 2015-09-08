@@ -1,4 +1,3 @@
-
 %.go:
 	$(MAKE) $*
 	echo "xdg-open $* &" | tcsh

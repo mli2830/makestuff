@@ -15,19 +15,13 @@ Sources += makefile.mk hooks.mk
 
 # bootstrap the CP command; anything else?
 ms = ../makestuff
-Sources += boot.mk
-include boot.mk
--include $(ms)/local.mk
-
-# Local.mk is made by hand from local.mk.template (maybe deprecate, for boot)
-Sources += local.mk.template
 
 # Bootstrap stuff
 # Want to be able to change this stuff locally
 %.mk: %.mk.template
 	$(CP) $< $@
 
-Sources += linux.mk.template windows.mk.template
+Sources += linux.mk windows.mk
 
 ######################################################################
 
@@ -38,5 +32,5 @@ include git.mk
 
 # Makefiles for other projects
 
-Sources += visual.mk oldlatex.mk
+Sources += visual.mk oldlatex.mk RR.mk
 
