@@ -31,9 +31,18 @@ remove:
 forget:
 	git reset --hard
 
-# Clean all unSourced files (files with extensions only)
+# Clean all unSourced files (files with extensions only) from directory or repo
 clean_repo:
 	git rm --cached --ignore-unmatch $(filter-out $(Sources), $(wildcard *.*))
 
 clean_dir:
 	/bin/rm -f $(filter-out $(Sources), $(wildcard *.*))
+
+# Test that you can make the current target with the Sources and the rules
+
+testdir: $(Sources)
+	-/bin/rm -rf $@_old
+	-/bin/mv -f $@ $@_old
+	mkdir $@
+	/bin/cp -f $^ $@
+	cd $@ && $(MAKE)
