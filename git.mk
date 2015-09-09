@@ -38,6 +38,8 @@ clean_repo:
 clean_dir:
 	/bin/rm -f $(filter-out $(Sources), $(wildcard *.*))
 
+clean_both: clean_repo clean_dir
+
 # Test that you can make the current target with the Sources and the rules
 
 testdir: $(Sources)
@@ -46,3 +48,6 @@ testdir: $(Sources)
 	mkdir $@
 	/bin/cp -f $^ $@
 	cd $@ && $(MAKE)
+
+subclone:
+	grep url .git/config | perl -npe "s/url =/git clone/; s/.git$$//" | sh
