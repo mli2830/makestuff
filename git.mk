@@ -50,4 +50,6 @@ testdir: $(Sources)
 	cd $@ && $(MAKE)
 
 subclone:
+	-/bin/rm -rf subclone_dir
+	mkdir subclone_dir
 	grep url .git/config | perl -npe "s/url =/git clone/; s/.git$$//" | sh
