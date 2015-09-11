@@ -94,6 +94,8 @@ foreach my $f (@R){
 			last;
 		}
 
+		next if (/No_R_pipe/);
+
 		if (/setpdf/){
 			s/^# *//;
 			s/setpdf\s*\(\)/dev.off(); pdf("RTARGET.Rout.pdf")/;
