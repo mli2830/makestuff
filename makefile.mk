@@ -1,7 +1,7 @@
 
 # make files
 
-Sources = Makefile .gitignore
+Sources = Makefile .gitignore README.md
 
 ######################################################################
 

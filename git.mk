@@ -22,8 +22,11 @@ commit.txt: $(Sources)
 	date >> $@
 
 .gitignore:
+	-/bin/cp $(ms)/$@ .
+
+README.md:
+	-/bin/cp $(ms)/README.github.md $@
 	touch $@
-	-/bin/cp ../$@ .
 
 remove:
 	git rm $(remove)

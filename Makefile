@@ -31,7 +31,12 @@ include git.mk
 
 # Makefiles and resources for other projects
 
-Sources += visual.mk oldlatex.mk RR.mk
+Sources += visual.mk oldlatex.mk RR.mk perl.def
+
+
+######################################################################
+
+# RR scripts
 
 RRR = $(wildcard RR/*.R)
 RRpl = $(wildcard RR/*.pl)
