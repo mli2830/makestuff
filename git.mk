@@ -49,8 +49,10 @@ testdir: $(Sources)
 	-/bin/rm -rf $@_old
 	-/bin/mv -f $@ $@_old
 	mkdir $@
-	/bin/cp -f $^ $@
-	cd $@ && $(MAKE)
+	mkdir $@/$(notdir $(CURDIR))
+	/bin/cp -f $^ $@/$(notdir $(CURDIR))
+	cd $@ && ln -s $(parallel) .
+	cd $@/$(notdir $(CURDIR)) && $(MAKE)
 
 subclone:
 	-/bin/rm -rf subclone_dir

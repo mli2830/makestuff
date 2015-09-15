@@ -14,7 +14,7 @@ latex = pdflatex
 	$(MAKE) $*.aux
 	diff .$< $< > /dev/null || $(MAKE) $*.ltx
 
-%.bbl: %.aux 
+%.bbl: %.tex 
 	/bin/rm -f $@
 	bibtex $*
 
