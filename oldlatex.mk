@@ -1,7 +1,7 @@
 latex = pdflatex
 
 %.ltx:
-	/bin/cp -f $*.aux .$*.aux
+	-/bin/cp -f $*.aux .$*.aux
 	$(latex) $*; sleep 1
 	diff .$*.aux $*.aux > /dev/null || touch $*.aux
 
@@ -15,6 +15,7 @@ latex = pdflatex
 	diff .$< $< > /dev/null || $(MAKE) $*.ltx
 
 %.bbl: %.tex 
+	$(MAKE) $*.ltx
 	/bin/rm -f $@
 	bibtex $*
 

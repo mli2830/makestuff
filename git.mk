@@ -51,7 +51,7 @@ testdir: $(Sources)
 	mkdir $@
 	mkdir $@/$(notdir $(CURDIR))
 	/bin/cp -f $^ $@/$(notdir $(CURDIR))
-	cd $@ && ln -s $(parallel) .
+	ln -s $(addprefix $(CURDIR)/, $(parallel)) $@
 	cd $@/$(notdir $(CURDIR)) && $(MAKE)
 
 subclone:
