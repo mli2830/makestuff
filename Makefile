@@ -26,7 +26,7 @@ Sources += linux.mk windows.mk
 
 # Git makefile for this and other projects
 
-Sources += git.mk
+Sources += git.mk git.def
 include git.mk
 
 # Makefiles and resources for other projects
