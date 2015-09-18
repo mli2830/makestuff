@@ -1,1 +1,4 @@
 parallel += ../makestuff
+MVF = /bin/mv -f
+MV = /bin/mv
+DIFF = diff

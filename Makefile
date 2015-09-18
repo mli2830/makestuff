@@ -31,7 +31,7 @@ include git.mk
 
 # Makefiles and resources for other projects
 
-Sources += visual.mk oldlatex.mk RR.mk perl.def
+Sources += visual.mk oldlatex.mk RR.mk perl.def compare.mk
 
 
 ######################################################################
