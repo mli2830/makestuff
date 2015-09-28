@@ -12,3 +12,7 @@ commit.txt
 *.Rout
 *.out
 local.mk
+
+.Rhistory
+testdir/
+testdir_old/
