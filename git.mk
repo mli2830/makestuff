@@ -45,6 +45,10 @@ clean_both: clean_repo clean_dir
 
 # Test that you can make the current target with the Sources and the rules
 
+$(Outside):
+	echo You need to get $@ from somewhere outside the repo and try again.
+	exit(1)
+
 testdir: $(Sources)
 	-/bin/rm -rf $@_old
 	-/bin/mv -f $@ $@_old
