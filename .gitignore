@@ -14,5 +14,7 @@ commit.txt
 local.mk
 
 .Rhistory
+
 testdir/
 testdir_old/
+subclone_dir/

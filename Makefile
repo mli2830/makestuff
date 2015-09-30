@@ -31,8 +31,7 @@ include git.mk
 
 # Makefiles and resources for other projects
 
-Sources += visual.mk oldlatex.mk RR.mk perl.def compare.mk
-
+Sources += visual.mk oldlatex.mk RR.mk wrapR.mk perl.def compare.mk
 
 ######################################################################
 
@@ -42,3 +41,10 @@ RRR = $(wildcard RR/*.R)
 RRpl = $(wildcard RR/*.pl)
 
 Sources += $(RRR) $(RRpl)
+
+# wrapR scripts
+
+wrapRR = $(wildcard wrapR/*.R)
+wrapRpl = $(wildcard wrapR/*.pl)
+
+Sources += $(wrapRR) $(wrapRpl)
