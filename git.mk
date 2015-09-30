@@ -47,7 +47,7 @@ clean_both: clean_repo clean_dir
 
 $(Outside):
 	echo You need to get $@ from somewhere outside the repo and try again.
-	exit(1)
+	exit 1
 
 testdir: $(Sources)
 	-/bin/rm -rf $@_old
