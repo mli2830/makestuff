@@ -27,7 +27,6 @@ Sources += linux.mk windows.mk
 # Git makefile for this and other projects
 
 Sources += git.mk git.def
-include git.mk
 
 # Makefiles and resources for other projects
 
@@ -48,3 +47,5 @@ wrapRR = $(wildcard wrapR/*.R)
 wrapRpl = $(wildcard wrapR/*.pl)
 
 Sources += $(wrapRR) $(wrapRpl)
+
+include git.mk

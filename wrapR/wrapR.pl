@@ -3,7 +3,7 @@
 ### ** loads all .RData files (and .RData files corresponding to .Rout files)
 ### ** Does something tricky with environment files
 ### ** Puts unrecognized file names into a variable called input_files
-### ** sources all .R files
+### ** sources all .R files (verbosely)
 ### ** saves image to a .RData file
 
 ### Make should pipe output to a .Rout file,
@@ -65,7 +65,7 @@ if (@envir){
 print "pdf(\"$rtarget.Rout.pdf\")\n\n";
 
 foreach my $f (@R){
-	say "source('$f')";
+	say "source('$f', echo=TRUE)";
 	my $text;
 	open (INF, $f);
 	while(<INF>){
