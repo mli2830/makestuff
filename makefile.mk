@@ -13,5 +13,5 @@ ms = ../makestuff
 
 -include $(ms)/visual.mk
 
-# -include $(ms)/RR.mk
-# -include oldlatex.mk
+# -include $(ms)/wrapR.mk
+# -include $(ms)/oldlatex.mk
