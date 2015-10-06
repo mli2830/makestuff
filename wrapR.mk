@@ -22,6 +22,9 @@ endef
 %.Rout: %.R
 	$(run-R)
 
+.PRECIOUS: %.Rout.csv
+%.Rout.csv: %.Rout ;
+
 .PRECIOUS: %.Rout.pdf
 %.Rout.pdf: %.Rout ;
 

@@ -56,6 +56,9 @@ if (@input){
 	print ")\n";
 }
 
+say "pdfname <- \"$rtarget.Rout.pdf\"";
+say "csvname <- \"$rtarget.Rout.csv\"";
+
 if (@envir){
 	print "\nenvir_list <- list(); ";
 	print "for (f in  c(";
@@ -63,7 +66,7 @@ if (@envir){
 	say ")){envir_list[[f]] <- new.env(); load(f, envir=envir_list[[f]])}";
 }
 
-say "pdf(\"$rtarget.Rout.pdf\")";
+say "pdf(pdfname)";
 
 say "# End RR preface\n";
 
