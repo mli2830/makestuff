@@ -1,9 +1,12 @@
-rm("input_files")
- 
-for(n in sort(objects())){
+show <- objects()
+exclude <- c("input_files", "csvname", "pdfname")
+show <- sort(setdiff(show, exclude))
+
+for(n in show){
 	o <- get(n)
 	c <- class(o)
 	cat(n, " (", c, ")", "\n", sep="")
 	print(summary(o))
 }
+
 # rdnosave

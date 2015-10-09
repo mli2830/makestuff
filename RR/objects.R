@@ -1,6 +1,8 @@
-rm("input_files")
+show <- objects()
+exclude <- c("input_files", "csvname", "pdfname")
+show <- sort(setdiff(show, exclude))
  
-for(n in sort(objects())){
+for(n in show){
 	o <- get(n)
 	c <- class(o)
 	# p <- paste(n, " (", c, ")", sep="")
