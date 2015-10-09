@@ -5,9 +5,9 @@ wrapR = $(wrapRd)/wrapR.pl
 Rtrim = $(RRd)/Rtrim.pl
 
 define run-R 
-	perl -f $(wrapR) $@ $^ > $(@:.Rout=.wrapR.R)
-	( (R --vanilla < $(@:.Rout=.wrapR.R) > $(@:.Rout=.wrapR.Rout)) 2> $(@:.Rout=.Rlog) && cat $(@:.Rout=.Rlog) ) || ! cat $(@:.Rout=.Rlog)
-	perl -wf $(Rtrim) $(@:.Rout=.wrapR.Rout) > $@
+	perl -f $(wrapR) $@ $^ > $(@:.Rout=.wrapR.r)
+	( (R --vanilla < $(@:.Rout=.wrapR.r) > $(@:.Rout=.wrapR.rout)) 2> $(@:.Rout=.Rlog) && cat $(@:.Rout=.Rlog) ) || ! cat $(@:.Rout=.Rlog)
+	perl -wf $(Rtrim) $(@:.Rout=.wrapR.rout) > $@
 endef
 
 .PRECIOUS: %.summary.Rout
@@ -21,6 +21,9 @@ endef
 .PRECIOUS: %.Rout
 %.Rout: %.R
 	$(run-R)
+
+.PRECIOUS: %.wrapR.r
+%.wrapR.r: %.Rout ;
 
 .PRECIOUS: %.Rout.csv
 %.Rout.csv: %.Rout ;
