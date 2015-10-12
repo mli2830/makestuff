@@ -12,16 +12,17 @@
 use strict;
 use 5.10.0;
 
-my $useCLArgs = "for (a in commandArgs(TRUE)){ eval(parse(text=a)) }";
-
 my @env;
 my @envir;
 my @R;
 my @input;
 
 my $target = shift(@ARGV);
-die "ERROR -- Rprep.pl: Illegal target $target (does not end with .Rout) \n" unless $target =~ s/.Rout$/.RData/;
-die "ERROR -- Rprep.pl: No input files received, nothing to do.  A rule, script or dependency is probably missing from the project directory \n" unless @ARGV>0;
+die "ERROR -- wrapR.pl: Illegal target $target (does not end with .Rout) \n" unless $target =~ s/.Rout$/.RData/;
+die "ERROR -- wrapR.pl: No input files received, nothing to do.  A rule, script or dependency is probably missing from the project directory \n" unless @ARGV>0;
+
+say ("# This file was generated automatically by wrapR.pl");
+say ("# You probably don't want to edit it");
 
 my $rtarget = $target;
 $rtarget =~ s/\.RData//;
@@ -55,6 +56,9 @@ if (@input){
 	print ")\n";
 }
 
+say "pdfname <- \"$rtarget.Rout.pdf\"";
+say "csvname <- \"$rtarget.Rout.csv\"";
+
 if (@envir){
 	print "\nenvir_list <- list(); ";
 	print "for (f in  c(";
@@ -62,7 +66,9 @@ if (@envir){
 	say ")){envir_list[[f]] <- new.env(); load(f, envir=envir_list[[f]])}";
 }
 
-print "pdf(\"$rtarget.Rout.pdf\")\n\n";
+say "pdf(pdfname)";
+
+say "# End RR preface\n";
 
 foreach my $f (@R){
 	say "source('$f', echo=TRUE)";
@@ -83,5 +89,7 @@ foreach my $f (@R){
 	}
 }
 
-print "\n# If you see this in your terminal, the R script $rtarget.wrap.R did not close properly\n$save\n";
+say "# Begin RR postscript";
+
+print "\n# If you see this in your terminal, the R script $rtarget.wrap.R (or something it called) did not close properly\n$save\n";
 
