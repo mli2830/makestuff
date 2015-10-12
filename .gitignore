@@ -9,11 +9,13 @@ commit.txt
 *.blg
 *.bbl
 
-*.Rout
-*.out
-local.mk
-
+*out
+*.RData
+*.Rlog
+*.r
 .Rhistory
+
+local.mk
 
 testdir/
 testdir_old/
