@@ -6,6 +6,9 @@ Sources = Makefile .gitignore README.md
 ######################################################################
 
 ms = ../makestuff
+# -include $(ms)/git.def
+
+##################################################################
 
 -include $(ms)/local.mk
 -include local.mk
