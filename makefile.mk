@@ -9,7 +9,7 @@ Sources = Makefile .gitignore README.md
 ms = ../makestuff
 msrepo = git@github.com:dushoff
 # -include $(ms)/git.def
--include $(ms)/local.def
+-include ../local.def
 
 ##################################################################
 
@@ -25,7 +25,7 @@ Makefile: start.makestuff
 	-cd $(dir $(ms)) && rm -rf .$(notdir $(ms))
 	touch $@
 
--include $(ms)/local.mk
+-include ../local.mk
 -include local.mk
 -include $(ms)/git.mk
 
