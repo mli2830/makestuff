@@ -45,6 +45,9 @@ clean_both: clean_repo clean_dir
 
 # Test that you can make the current target with the Sources and the rules
 
+$(Outside): %: ../../%
+	/bin/ln -s $< .
+
 $(Outside):
 	echo You need to get $@ from somewhere outside the repo and try again.
 	exit 1
