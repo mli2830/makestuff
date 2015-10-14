@@ -49,13 +49,16 @@ $(Outside):
 	echo You need to get $@ from somewhere outside the repo and try again.
 	exit 1
 
-testdir: $(Sources)
+../local:
+	mkdir $@
+
+testdir: $(Sources) ../local
 	-/bin/rm -rf $@_old
 	-/bin/mv -f $@ $@_old
 	mkdir $@
 	mkdir $@/$(notdir $(CURDIR))
-	/bin/cp -f $^ $@/$(notdir $(CURDIR))
-	ln -s $(CURDIR)/../local $(addprefix $(CURDIR)/../, $(parallel)) $@
+	/bin/cp -f $(Sources) $@/$(notdir $(CURDIR))
+	ln -s ../local $(addprefix $(CURDIR)/../, $(parallel)) $@
 	cd $@/$(notdir $(CURDIR)) && $(MAKE)
 
 subclone:
