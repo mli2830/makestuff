@@ -10,6 +10,9 @@ define run-R
 	perl -wf $(Rtrim) $(@:.Rout=.wrapR.rout) > $@
 endef
 
+%.Rlib.R: $(ms)/
+	echo 'library("$*")' > $@
+
 .PRECIOUS: %.summary.Rout
 %.summary.Rout: %.Rout $(RRd)/summary.R
 	$(run-R)
