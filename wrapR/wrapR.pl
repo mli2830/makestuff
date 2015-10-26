@@ -56,6 +56,7 @@ if (@input){
 	print ")\n";
 }
 
+say "rtargetname <- \"$rtarget\"";
 say "pdfname <- \"$rtarget.Rout.pdf\"";
 say "csvname <- \"$rtarget.Rout.csv\"";
 
