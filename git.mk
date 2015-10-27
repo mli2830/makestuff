@@ -58,6 +58,7 @@ testdir: $(Sources) ../local
 	mkdir $@
 	mkdir $@/$(notdir $(CURDIR))
 	/bin/cp -f $(Sources) $@/$(notdir $(CURDIR))
+	-/bin/cp local.* $@/$(notdir $(CURDIR)) 
 	ln -s ../local $(addprefix $(CURDIR)/../, $(parallel)) $@
 	cd $@/$(notdir $(CURDIR)) && $(MAKE)
 
