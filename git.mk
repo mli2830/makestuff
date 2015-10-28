@@ -53,13 +53,13 @@ $(Outside):
 	mkdir $@
 
 testdir: $(Sources) ../local
-	-/bin/rm -rf $@_old
-	-/bin/mv -f $@ $@_old
+	-/bin/rm -rf .$@
+	-/bin/mv -f $@ .$@
 	mkdir $@
 	mkdir $@/$(notdir $(CURDIR))
-	/bin/cp -f $(Sources) $@/$(notdir $(CURDIR))
+	tar czf $@/$(notdir $(CURDIR))/export.tgz $(Sources)
+	cd $@/$(notdir $(CURDIR)) && tar xzf export.tgz
 	-/bin/cp local.* $@/$(notdir $(CURDIR)) 
-	ln -s ../local $(addprefix $(CURDIR)/../, $(parallel)) $@
 	cd $@/$(notdir $(CURDIR)) && $(MAKE)
 
 subclone:
