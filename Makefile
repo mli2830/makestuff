@@ -3,7 +3,7 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: Makefile
+target pngtarget pdftarget vtarget acrtarget: .deps/test.tex.d 
 
 ##################################################################
 
@@ -34,6 +34,8 @@ Sources += git.mk git.def
 
 Sources += visual.mk oldlatex.mk RR.mk wrapR.mk perl.def compare.mk
 
+Sources += newlatex.mk latexdeps.pl
+
 ######################################################################
 
 # RR scripts
@@ -51,3 +53,14 @@ wrapRpl = $(wildcard wrapR/*.pl)
 Sources += $(wrapRR) $(wrapRpl)
 
 include git.mk
+
+######################################################################
+
+# Developing newlatex
+
+# include perl.def
+# include newlatex.mk
+
+# test.pdf: test.tex latexdeps.pl
+
+# .deps/test.tex.d: test.tex latexdeps.pl

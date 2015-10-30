@@ -51,11 +51,11 @@ clean_dir:
 
 clean_both: clean_repo clean_dir
 
-# Test that you can make the current target with the Sources and the rules
-
 $(Outside):
 	echo You need to get $@ from somewhere outside the repo and try again.
 	exit 1
+
+# Test that you can make the current target with the Sources and the rules
 
 testdir: $(Sources)
 	-/bin/rm -rf .$@
