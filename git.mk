@@ -1,4 +1,6 @@
 
+### Git for _centralized_ workflow
+
 newpush: commit.txt
 	git push -u origin master
 
@@ -8,6 +10,12 @@ push: commit.txt
 pull: commit.txt
 	git pull --rebase origin master
 	touch $<
+
+continue: commit.txt
+	git rebase --continue
+
+abort: 
+	git rebase --abort
 
 sync: 
 	$(MAKE) pull
@@ -49,10 +57,7 @@ $(Outside):
 	echo You need to get $@ from somewhere outside the repo and try again.
 	exit 1
 
-../local:
-	mkdir $@
-
-testdir: $(Sources) ../local
+testdir: $(Sources)
 	-/bin/rm -rf .$@
 	-/bin/mv -f $@ .$@
 	mkdir $@
