@@ -5,11 +5,12 @@ Sources = Makefile .gitignore README.md
 
 ######################################################################
 
+msrepo = https://github.com/dushoff
+gitroot = ../
 
-ms = ../makestuff
-msrepo = git@github.com:dushoff
-# -include $(ms)/git.def
--include ../local.def
+-include local.mk
+-include $(gitroot)/local/local.mk
+ms = $(gitroot)/makestuff
 
 ##################################################################
 
@@ -18,17 +19,13 @@ msrepo = git@github.com:dushoff
 ## Change this name to download a new version of the makestuff directory
 Makefile: start.makestuff
 
-
 %.makestuff:
 	-cd $(dir $(ms)) && mv -f $(notdir $(ms)) .$(notdir $(ms))
 	cd $(dir $(ms)) && git clone $(msrepo)/$(notdir $(ms)).git
 	-cd $(dir $(ms)) && rm -rf .$(notdir $(ms))
 	touch $@
 
--include ../local.mk
--include local.mk
 -include $(ms)/git.mk
-
 -include $(ms)/visual.mk
 
 # -include $(ms)/wrapR.mk
