@@ -3,10 +3,10 @@ newpush: commit.txt
 	git push -u origin master
 
 push: commit.txt
-	git push
+	git push origin master
 
 pull: commit.txt
-	git pull
+	git pull --rebase origin master
 	touch $<
 
 sync: 
