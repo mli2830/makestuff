@@ -44,3 +44,7 @@ endef
 .PRECIOUS: %.RData
 %.RData: %.Rout ;
 
+.PRECIOUS: %.envir
+%.envir: %
+	touch $@
+
