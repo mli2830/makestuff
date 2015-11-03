@@ -15,10 +15,12 @@ commit.txt
 *.r
 .Rhistory
 
+*.wrapR.*
+
 local.mk
 
 testdir/
-testdir_old/
+.testdir/
 subclone_dir/
 
 *.makestuff
