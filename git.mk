@@ -11,7 +11,8 @@ pull: commit.txt
 	git pull --rebase origin master
 	touch $<
 
-continue: commit.txt
+continue: $(Sources)
+	git add $(Sources)
 	git rebase --continue
 
 abort: 
