@@ -1,7 +1,7 @@
 
 # make files
 
-Sources = Makefile .gitignore README.md
+Sources = Makefile .gitignore README.md stuff.mk LICENSE
 
 ######################################################################
 
