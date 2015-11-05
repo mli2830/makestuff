@@ -4,7 +4,7 @@ PUSH = perl -wf $(filter %.pl, $^) $(filter-out %.pl, $^) > $@
 # Pushout adds the name of the output file as the first argument (assuming you only have one .pl dependency)
 PUSHOUT = perl -wf $(filter %.pl, $^) $@ $(filter-out %.pl, $^) > $@
 
-# Pushstar adds $*)
+# Pushstar adds $*
 PUSHSTAR = perl -wf $(filter %.pl, $^) $* $(filter-out %.pl, $^) > $@
 
 # Pushon appends (pushes onto the file that's already there)
