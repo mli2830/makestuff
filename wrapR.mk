@@ -10,6 +10,7 @@ define run-R
 	perl -wf $(Rtrim) $(@:.Rout=.wrapR.rout) > $@
 endef
 
+.PRECIOUS: %.Rlib.R
 %.Rlib.R: $(ms)/
 	echo 'library("$*")' > $@
 
