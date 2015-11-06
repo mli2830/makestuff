@@ -50,7 +50,7 @@ clean_repo:
 clean_dir:
 	-$(RMR) .clean_dir
 	mkdir .clean_dir
-	$(MV) $(filter-out $(Sources), $(wildcard *.*)) .$@
+	$(MV) $(filter-out $(Sources) local.mk $(wildcard *.makestuff), $(wildcard *.*)) .$@
 
 clean_both: clean_repo clean_dir
 
