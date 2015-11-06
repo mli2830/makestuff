@@ -12,6 +12,7 @@ CP = /bin/cp
 CPF = /bin/cp -f
 DIFF = diff
 EDIT = gvim
+RMR = /bin/rm -rf
 
 copy = $(CP) $< $@
 ccrib = $(CP) $(crib)/$@ .

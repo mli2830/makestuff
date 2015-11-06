@@ -48,7 +48,9 @@ clean_repo:
 	git rm --cached --ignore-unmatch $(filter-out $(Sources), $(wildcard *.*))
 
 clean_dir:
-	/bin/rm -f $(filter-out $(Sources), $(wildcard *.*))
+	-$(RMR) .clean_dir
+	mkdir .clean_dir
+	$(MV) $(filter-out $(Sources), $(wildcard *.*)) .$@
 
 clean_both: clean_repo clean_dir
 
