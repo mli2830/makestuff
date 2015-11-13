@@ -3,9 +3,14 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: .deps/test.tex.d 
+target pngtarget pdftarget vtarget acrtarget: now 
 
 ##################################################################
+
+BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
+
+now:
+	@echo $(BRANCH)
 
 ms = ../makestuff
 
