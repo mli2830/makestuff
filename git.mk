@@ -33,6 +33,9 @@ commit.txt: $(Sources)
 .gitignore:
 	-/bin/cp $(ms)/$@ .
 
+dev.branch: commit.txt
+	git checkout dev
+
 README.md:
 	-/bin/cp $(ms)/README.github.md $@
 	touch $@
