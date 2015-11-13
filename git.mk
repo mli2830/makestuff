@@ -1,11 +1,14 @@
 
 ### Git for _centralized_ workflow
+### Trying to generalize now
+
+BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
 newpush: commit.txt
-	git push -u origin master
+	git push -u origin $(BRANCH)
 
 push: commit.txt
-	git push origin master
+	git push
 
 pull: commit.txt
 	git pull --rebase origin master
