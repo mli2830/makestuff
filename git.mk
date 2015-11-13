@@ -2,6 +2,8 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
+cmain = dev
+
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
 newpush: commit.txt
@@ -37,13 +39,15 @@ continue: $(Sources)
 	git branch -D $*
 	git push origin --delete $*
 
+## FrogS!
+
 updatebranch: sync
-	git rebase dev 
-	git push
+	git rebase $(cmain) 
 
 fullmerge: updatebranch
-	git checkout dev
-	git merge $(BRANCH)
+	git checkout $(cmain)
+	git pull
+	git pull origin $(BRANCH)
 	git push
 	git branch -d $(BRANCH)
 	git push origin --delete $(BRANCH)
