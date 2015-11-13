@@ -21,7 +21,7 @@ continue: $(Sources)
 
 #### Branching ####
 
-### Trees are blue
+### Trees are green
 
 %.branch:
 	$(MAKE) commit.txt
