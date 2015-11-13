@@ -21,6 +21,8 @@ continue: $(Sources)
 
 #### Branching ####
 
+### Trees are blue
+
 %.branch:
 	$(MAKE) commit.txt
 	git checkout $*
