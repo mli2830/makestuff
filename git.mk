@@ -27,7 +27,6 @@ continue: $(Sources)
 	$(MAKE) commit.txt
 	git checkout $*
 
-# Frogs are not green
 %.newbranch:
 	-git branch -d $*
 	git branch $*
