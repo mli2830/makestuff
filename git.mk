@@ -27,7 +27,7 @@ continue: $(Sources)
 	$(MAKE) commit.txt
 	git checkout $*
 
-# Frogs are green
+# Frogs are not green
 %.newbranch:
 	-git branch -d $*
 	git branch $*
@@ -39,6 +39,9 @@ updatebranch: sync
 
 fullmerge: updatebranch
 	git merge $(BRANCH) dev
+	git checkout dev
+	git branch -d $(BRANCH)
+	git push origin --delete $(BRANCH)
 
 abort: 
 	git rebase --abort
