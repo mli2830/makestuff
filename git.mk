@@ -24,6 +24,9 @@ continue: $(Sources)
 	git add $(Sources)
 	git rebase --continue
 
+updatebranch: sync
+	git merge master $(BRANCH)
+
 abort: 
 	git rebase --abort
 
