@@ -4,17 +4,8 @@
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
-%.branch:
-	$(MAKE) commit.txt
-	git checkout $*
-
-%.newbranch:
-	git checkout -b $*
-	$(MAKE) commit.txt
-	git push -u origin $(BRANCH)
-
 newpush: commit.txt
-	git push -u origin master
+	git push -u origin $(BRANCH)
 
 push: commit.txt
 	git push
@@ -28,8 +19,23 @@ continue: $(Sources)
 	git add $(Sources)
 	git rebase --continue
 
+#### Branching ####
+
+%.branch:
+	$(MAKE) commit.txt
+	git checkout $*
+
+%.newbranch:
+	git branch -d $*
+	git branch $*
+	$(MAKE) $*.branch
+	$(MAKE) newpush
+
 updatebranch: sync
-	git merge master $(BRANCH)
+	git merge dev $(BRANCH)
+
+fullmerge: updatebranch
+	git merge $(BRANCH) dev
 
 abort: 
 	git rebase --abort
