@@ -54,11 +54,14 @@ commit.txt: $(Sources)
 	-git commit -F $@
 	date >> $@
 
-.gitignore:
+.gitignore stuff.mk:
 	-/bin/cp $(ms)/$@ .
 
 README.md:
 	-/bin/cp $(ms)/README.github.md $@
+	touch $@
+
+LICENSE.md:
 	touch $@
 
 remove:
