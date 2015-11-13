@@ -32,10 +32,13 @@ continue: $(Sources)
 	$(MAKE) newpush
 
 updatebranch: sync
-	git merge dev $(BRANCH)
+	git rebase dev 
+	git push
 
-fullmerge: updatebranch
-	git merge $(BRANCH) dev
+fullmerge: updatebranch ## fullmerge
+	git checkout dev
+	git merge $(BRANCH)
+	-git branch -d $(BRANCH)
 
 abort: 
 	git rebase --abort
