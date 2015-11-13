@@ -36,6 +36,7 @@ continue: $(Sources)
 
 updatebranch: sync
 	git rebase dev 
+	git push
 
 fullmerge: updatebranch
 	git checkout dev
