@@ -40,6 +40,7 @@ updatebranch: sync
 fullmerge: updatebranch
 	git checkout dev
 	git merge $(BRANCH)
+	git push
 	git branch -d $(BRANCH)
 	git push origin --delete $(BRANCH)
 
