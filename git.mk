@@ -45,10 +45,13 @@ updatebranch: sync
 	git rebase $(cmain) 
 
 fullmerge: updatebranch
+	git pull
 	git checkout $(cmain)
 	git pull
 	git pull origin $(BRANCH)
 	git push
+
+future:
 	git branch -d $(BRANCH)
 	git push origin --delete $(BRANCH)
 
