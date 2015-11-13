@@ -30,7 +30,7 @@ commit.txt: $(Sources)
 	-git commit -F $@
 	date >> $@
 
-.gitignore stuff.mk:
+.gitignore:
 	-/bin/cp $(ms)/$@ .
 
 README.md:
