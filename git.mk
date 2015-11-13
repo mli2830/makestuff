@@ -12,7 +12,7 @@ push: commit.txt
 
 pull: commit.txt
 	git fetch
-	git rebase origin $(BRANCH)
+	git rebase origin/$(BRANCH)
 	touch $<
 
 continue: $(Sources)
