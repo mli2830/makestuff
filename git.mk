@@ -4,14 +4,20 @@
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
-newpush: commit.txt
+%.newbranch:
+	git checkout -b $*
+	$(MAKE) commit.txt
 	git push -u origin $(BRANCH)
+
+newpush: commit.txt
+	git push -u origin master
 
 push: commit.txt
 	git push
 
 pull: commit.txt
-	git pull --rebase origin master
+	git fetch
+	git rebase origin $(BRANCH)
 	touch $<
 
 continue: $(Sources)
