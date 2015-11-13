@@ -16,7 +16,7 @@ ms = ../makestuff
 
 # Base files
 
-Sources = Makefile LICENSE README.md .gitignore stuff.mk
+Sources = Makefile LICENSE README.md .gitignore stuff.mk README.github.md
 
 # Starting makefile for other projectcs
 
