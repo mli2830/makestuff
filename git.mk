@@ -35,7 +35,7 @@ continue: $(Sources)
 	$(MAKE) newpush
 
 updatebranch: sync
-	git merge dev $(BRANCH)
+	git rebase dev 
 
 fullmerge: updatebranch
 	git merge $(BRANCH) dev
