@@ -4,6 +4,10 @@
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
+%.branch:
+	$(MAKE) commit.txt
+	git checkout $*
+
 %.newbranch:
 	git checkout -b $*
 	$(MAKE) commit.txt

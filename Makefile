@@ -7,8 +7,6 @@ target pngtarget pdftarget vtarget acrtarget: now
 
 ##################################################################
 
-BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
-
 now:
 	@echo $(BRANCH)
 
