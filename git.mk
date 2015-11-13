@@ -34,6 +34,10 @@ continue: $(Sources)
 	$(MAKE) $*.branch
 	$(MAKE) newpush
 
+%.nuke:
+	git branch -D $*
+	git push origin --delete $*
+
 updatebranch: sync
 	git rebase dev 
 	git push
