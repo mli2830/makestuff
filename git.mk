@@ -26,7 +26,7 @@ continue: $(Sources)
 	git checkout $*
 
 %.newbranch:
-	git branch -d $*
+	-git branch -d $*
 	git branch $*
 	$(MAKE) $*.branch
 	$(MAKE) newpush
