@@ -1,4 +1,4 @@
-
+B1;3409;0c
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
@@ -39,11 +39,7 @@ continue: $(Sources)
 	git branch -D $*
 	git push origin --delete $*
 
-<<<<<<< HEAD
 ## didn't eat lunch either
-=======
-## I didn't get dinner yet
->>>>>>> 07ecc79c6fe53a25151bdb252010cef85094afce
 
 updatebranch: sync
 	git rebase $(cmain) 
