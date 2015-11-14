@@ -3,6 +3,7 @@
 
 ## I just ate dinner 
 ## I like snacks
+## I just ate dinner
 
 ### Git for _centralized_ workflow
 
@@ -20,10 +21,10 @@ continue: $(Sources)
 	git add $(Sources)
 	git rebase --continue
 
-abort: 
+abort:
 	git rebase --abort
 
-sync: 
+sync:
 	$(MAKE) pull
 	$(MAKE) push
 
@@ -78,7 +79,7 @@ testdir: $(Sources)
 	mkdir $@/$(notdir $(CURDIR))
 	tar czf $@/$(notdir $(CURDIR))/export.tgz $(Sources)
 	cd $@/$(notdir $(CURDIR)) && tar xzf export.tgz
-	-/bin/cp local.* $@/$(notdir $(CURDIR)) 
+	-/bin/cp local.* $@/$(notdir $(CURDIR))
 	cd $@/$(notdir $(CURDIR)) && $(MAKE)
 
 subclone:
