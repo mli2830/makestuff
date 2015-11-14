@@ -39,7 +39,7 @@ continue: $(Sources)
 	git branch -D $*
 	git push origin --delete $*
 
-## FrogS!
+## I didn't get dinner yet
 
 updatebranch: sync
 	git rebase $(cmain) 
