@@ -39,7 +39,7 @@ continue: $(Sources)
 	git branch -D $*
 	git push origin --delete $*
 
-## I just ate dinner 
+## First 
 
 updatebranch: sync
 	git rebase $(cmain) 
