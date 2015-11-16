@@ -1,3 +1,8 @@
+### Git for _centralized_ workflow
+### Trying to generalize now
+
+## I just ate dinner 
+## I like snacks
 
 ### Git for _centralized_ workflow
 
