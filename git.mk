@@ -27,8 +27,8 @@ sync:
 	$(MAKE) pull
 	$(MAKE) push
 
-commit.txt: $(Sources)
-	git add $(Sources)
+commit.txt: $(Sources) $(Archive)
+	git add $^
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@
 	-git commit --dry-run >> $@
 	gvim -f $@
