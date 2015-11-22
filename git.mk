@@ -1,7 +1,7 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
-cmain = NULL
+cmain = master
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
