@@ -1,15 +1,19 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
+cmain = NULL
+
+BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
+
 ##################################################################
 
 ### Push and pull
 
 newpush: commit.txt
-	git push -u origin master
+	git push -u origin $(BRANCH)
 
 push: commit.txt
-	git push origin master
+	git push origin $(BRANCH)
 
 pull: commit.txt
 	git fetch
@@ -38,7 +42,6 @@ continue: $(Sources)
 
 abort:
 	git rebase --abort
-
 
 ##################################################################
 
@@ -109,9 +112,17 @@ subclone:
 
 # Branching
 
-cmain = NULL
-
-BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
-
 dev.branch: commit.txt
 	git checkout dev
+
+%.nuke:
+	git branch -D $*
+	git push origin --delete $*
+
+%.branch: sync
+	git checkout $*
+
+%.newbranch: sync
+	-git branch -d $*
+	git checkout -b $*
+	$(MAKE) newpush
