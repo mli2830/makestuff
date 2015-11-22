@@ -1,11 +1,9 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
-## I just ate dinner 
-## I like snacks
-## I just ate dinner
+##################################################################
 
-### Git for _centralized_ workflow
+### Push and pull
 
 newpush: commit.txt
 	git push -u origin master
@@ -16,13 +14,6 @@ push: commit.txt
 pull: commit.txt
 	git pull --rebase origin master
 	touch $<
-
-continue: $(Sources)
-	git add $(Sources)
-	git rebase --continue
-
-abort:
-	git rebase --abort
 
 sync:
 	$(MAKE) pull
@@ -36,11 +27,24 @@ commit.txt: $(Sources) $(Archive)
 	-git commit -F $@
 	date >> $@
 
+##################################################################
+
+### Rebase
+
+continue: $(Sources)
+	git add $(Sources)
+	git rebase --continue
+
+abort:
+	git rebase --abort
+
+
+##################################################################
+
+# Special files
+
 .gitignore:
 	-/bin/cp $(ms)/$@ .
-
-dev.branch: commit.txt
-	git checkout dev
 
 README.md:
 	-/bin/cp $(ms)/README.github.md $@
@@ -48,6 +52,15 @@ README.md:
 
 LICENSE.md:
 	touch $@
+
+local.mk:
+	-/bin/cp $(gitroot)/local/local.mk .
+	touch $@
+
+
+##################################################################
+
+### Cleaning
 
 remove:
 	git rm $(remove)
@@ -60,17 +73,19 @@ clean_repo:
 	git rm --cached --ignore-unmatch $(filter-out $(Sources), $(wildcard *.*))
 
 clean_dir:
-	-$(RMR) .clean_dir
-	mkdir .clean_dir
+	-$(RMR) .$@
+	mkdir .$@
 	$(MV) $(filter-out $(Sources) local.mk $(wildcard *.makestuff), $(wildcard *.*)) .$@
 
 clean_both: clean_repo clean_dir
 
 $(Outside):
-	echo You need to get $@ from somewhere outside the repo and try again.
+	echo Please get $@ (from somewhere outside the repo) and try again.
 	exit 1
 
-# Test that you can make the current target with the Sources and the rules
+##################################################################
+
+### Testing
 
 testdir: $(Sources)
 	-/bin/rm -rf .$@
@@ -89,6 +104,9 @@ subclone:
 	cd subclone_dir && grep url ../.git/config | perl -npe "s/url =/git clone/; s/.git$$//" | sh
 	cd subclone_dir/* && $(MAKE) Makefile && $(MAKE)
 
-local.mk:
-	-/bin/cp $(gitroot)/local/local.mk .
-	touch $@
+##################################################################
+
+# Branching
+
+dev.branch: commit.txt
+	git checkout dev
