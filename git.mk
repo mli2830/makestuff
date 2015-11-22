@@ -2,6 +2,9 @@
 ### Trying to generalize now
 
 cmain = NULL
+## This is a test
+
+cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 -include $(BRANCH).mk
