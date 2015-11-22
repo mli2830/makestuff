@@ -84,7 +84,7 @@ clean_dir:
 clean_both: clean_repo clean_dir
 
 $(Outside):
-	echo Please get $@ (from somewhere outside the repo) and try again.
+	echo Please get $@ from outside the repo and try again.
 	exit 1
 
 ##################################################################
