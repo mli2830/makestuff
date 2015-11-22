@@ -114,10 +114,6 @@ subclone:
 
 # Branching
 
-%.nuke:
-	git branch -D $*
-	git push origin --delete $*
-
 %.branch: sync
 	git checkout $*
 
@@ -125,3 +121,10 @@ subclone:
 	-git branch -d $*
 	git checkout -b $*
 	$(MAKE) newpush
+
+update: sync
+	git merge $(cmain)
+
+%.nuke:
+	git branch -D $*
+	git push origin --delete $*
