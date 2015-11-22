@@ -112,9 +112,6 @@ subclone:
 
 # Branching
 
-dev.branch: commit.txt
-	git checkout dev
-
 %.nuke:
 	git branch -D $*
 	git push origin --delete $*
