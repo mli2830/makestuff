@@ -4,7 +4,7 @@
 ## This is a test
 ### This text is good!
 
-cmain = master
+cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
