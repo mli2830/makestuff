@@ -12,7 +12,8 @@ push: commit.txt
 	git push origin master
 
 pull: commit.txt
-	git pull --rebase origin master
+	git fetch
+	git rebase origin $(BRANCH)
 	touch $<
 
 sync:
@@ -107,6 +108,10 @@ subclone:
 ##################################################################
 
 # Branching
+
+cmain = NULL
+
+BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
 dev.branch: commit.txt
 	git checkout dev
