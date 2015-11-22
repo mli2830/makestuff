@@ -3,7 +3,7 @@
 
 ## This is a test
 
-cmain = master
+cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
