@@ -114,6 +114,10 @@ subclone:
 
 # Branching
 
+%.nuke:
+	git branch -D $*
+	git push origin --delete $*
+
 %.branch: sync
 	git checkout $*
 
