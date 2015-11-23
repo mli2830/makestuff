@@ -2,6 +2,7 @@
 ### Trying to generalize now
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
+include $(BRANCH).mk
 
 ##################################################################
 
