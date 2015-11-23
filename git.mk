@@ -1,11 +1,8 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
-### This text is good!
-
-cmain = master
-
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
+include $(BRANCH).mk
 
 ##################################################################
 
@@ -114,10 +111,6 @@ subclone:
 
 # Branching
 
-%.nuke:
-	git branch -D $*
-	git push origin --delete $*
-
 %.branch: sync
 	git checkout $*
 
@@ -125,3 +118,10 @@ subclone:
 	-git branch -d $*
 	git checkout -b $*
 	$(MAKE) newpush
+
+update: sync
+	git merge $(cmain)
+
+%.nuke:
+	git branch -D $*
+	git push origin --delete $*
