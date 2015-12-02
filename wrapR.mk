@@ -1,5 +1,6 @@
 wrapRd = $(ms)/wrapR
 RRd = $(ms)/RR
+include $(RRd)/pdf.mk
 
 wrapR = $(wrapRd)/wrapR.pl
 Rtrim = $(RRd)/Rtrim.pl

@@ -29,7 +29,7 @@ sync:
 	$(MAKE) push
 
 commit.txt: $(Sources) $(Archive)
-	git add $^
+	git add -f $^
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@
 	-git commit --dry-run >> $@
 	gvim -f $@

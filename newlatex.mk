@@ -10,6 +10,10 @@ include $(wildcard .deps/*.d)
 .deps:
 	mkdir $@
 
+reset_deps:
+	$(RM) deps/*.d
+
+.PRECIOUS: %.aux
 %.aux: %.tex .deps
 	$(MAKE) .deps/$<.d
 	touch $@
