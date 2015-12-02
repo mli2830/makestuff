@@ -16,6 +16,10 @@ while ($f =~ s/\\includegraphics\s*{(.*?)}//){
 	say "$basename.tex: $1";
 }
 
+while ($f =~ s/\\includegraphics\s*\[[^\]]*]\s*{(.*?)}//){
+	say "$basename.tex: $1";
+}
+
 while ($f =~ s/\\bibliography\s*{(.*?)}//){
 	say "$basename.pdf: $basename.bbl";
 	my @biblist = split /,\s*/, $1;
