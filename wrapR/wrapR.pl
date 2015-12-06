@@ -21,11 +21,11 @@ my $target = shift(@ARGV);
 die "ERROR -- wrapR.pl: Illegal target $target (does not end with .Rout) \n" unless $target =~ s/.Rout$/.RData/;
 die "ERROR -- wrapR.pl: No input files received, nothing to do.  A rule, script or dependency is probably missing from the project directory \n" unless @ARGV>0;
 
-say ("# This file was generated automatically by wrapR.pl");
-say ("# You probably don't want to edit it");
-
 my $rtarget = $target;
 $rtarget =~ s/\.RData//;
+
+say "# This file was generated automatically by wrapR.pl";
+say "# You probably don't want to edit it";
 
 my $savetext = "save.image(file=\"$target\")";
 my $save = $savetext;
@@ -71,6 +71,8 @@ say "pdf(pdfname)";
 
 say "# End RR preface\n";
 
+say "# Generated using wrapR file $rtarget.wrapR.r";
+
 foreach my $f (@R){
 	say "source('$f', echo=TRUE)";
 	my $text;
@@ -90,7 +92,11 @@ foreach my $f (@R){
 	}
 }
 
+say "# Wrapped output file $rtarget.wrapR.rout";
+
 say "# Begin RR postscript";
 
-print "\n# If you see this in your terminal, the R script $rtarget.wrap.R (or something it called) did not close properly\n$save\n";
+say "\n# If you see this in your terminal, the R script $rtarget.wrapR.r (or something it called) did not close properly";
+say "warnings()";
+say "$save\n";
 
