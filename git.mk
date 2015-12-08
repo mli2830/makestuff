@@ -1,6 +1,8 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
+### Diphthong
+
 cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
