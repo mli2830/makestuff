@@ -1,12 +1,7 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
-### Process
-## Pattern
-
-### Rompers
-
-cmain = master
+cmain = NULL
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 -include $(BRANCH).mk
@@ -35,7 +30,7 @@ sync:
 	$(MAKE) push
 
 commit.txt: $(Sources) $(Archive)
-	git add $^
+	git add -f $^
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@
 	-git commit --dry-run >> $@
 	gvim -f $@
@@ -146,4 +141,3 @@ upmerge:
 	git merge $(BRANCH)
 	git push -u origin $(cmain)
 	$(MAKE) $(BRANCH).nuke
-
