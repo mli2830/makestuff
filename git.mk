@@ -1,10 +1,6 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
-### dev
-### Test
-### More
-
 cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
