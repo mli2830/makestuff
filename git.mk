@@ -6,7 +6,7 @@
 
 ### Rompers
 
-cmain = dev
+cmain = master
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 -include $(BRANCH).mk
