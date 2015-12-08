@@ -133,6 +133,7 @@ updatebranch: sync
 	git push origin --delete $*
 
 upmerge: 
+	git rebase $(cmain) 
 	git checkout $(cmain)
 	git pull
 	git merge $(BRANCH)
