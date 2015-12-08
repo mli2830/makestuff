@@ -21,10 +21,6 @@ pull: commit.txt
 	git rebase origin/$(BRANCH)
 	touch $<
 
-continue: $(Sources)
-	git add $(Sources)
-	git rebase --continue
-
 #### Branching ####
 
 ### Trees are green
@@ -58,12 +54,6 @@ fullmerge: updatebranch
 future:
 	git branch -d $(BRANCH)
 	git push origin --delete $(BRANCH)
-
-abort: 
-	git rebase --abort
-
-sync: 
-	git push origin $(BRANCH)
 
 sync:
 	$(MAKE) pull
