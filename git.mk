@@ -1,10 +1,14 @@
-
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
 cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
+-include $(BRANCH).mk
+
+##################################################################
+
+### Push and pull
 
 newpush: commit.txt
 	git push -u origin $(BRANCH)
@@ -59,16 +63,39 @@ abort:
 	git rebase --abort
 
 sync: 
+	git push origin $(BRANCH)
+
+pull: commit.txt
+	git fetch
+	git rebase origin $(BRANCH)
+	touch $<
+
+sync:
 	$(MAKE) pull
 	$(MAKE) push
 
-commit.txt: $(Sources)
-	git add $(Sources)
+commit.txt: $(Sources) $(Archive)
+	git add $^
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@
 	-git commit --dry-run >> $@
 	gvim -f $@
 	-git commit -F $@
 	date >> $@
+
+##################################################################
+
+### Rebase
+
+continue: $(Sources)
+	git add $(Sources)
+	git rebase --continue
+
+abort:
+	git rebase --abort
+
+##################################################################
+
+# Special files
 
 .gitignore:
 	-/bin/cp $(ms)/$@ .
@@ -79,6 +106,15 @@ README.md:
 
 LICENSE.md:
 	touch $@
+
+local.mk:
+	-/bin/cp $(gitroot)/local/local.mk .
+	touch $@
+
+
+##################################################################
+
+### Cleaning
 
 remove:
 	git rm $(remove)
@@ -91,17 +127,19 @@ clean_repo:
 	git rm --cached --ignore-unmatch $(filter-out $(Sources), $(wildcard *.*))
 
 clean_dir:
-	-$(RMR) .clean_dir
-	mkdir .clean_dir
+	-$(RMR) .$@
+	mkdir .$@
 	$(MV) $(filter-out $(Sources) local.mk $(wildcard *.makestuff), $(wildcard *.*)) .$@
 
 clean_both: clean_repo clean_dir
 
 $(Outside):
-	echo You need to get $@ from somewhere outside the repo and try again.
+	echo Please get $@ (from somewhere outside the repo) and try again.
 	exit 1
 
-# Test that you can make the current target with the Sources and the rules
+##################################################################
+
+### Testing
 
 testdir: $(Sources)
 	-/bin/rm -rf .$@
@@ -110,7 +148,7 @@ testdir: $(Sources)
 	mkdir $@/$(notdir $(CURDIR))
 	tar czf $@/$(notdir $(CURDIR))/export.tgz $(Sources)
 	cd $@/$(notdir $(CURDIR)) && tar xzf export.tgz
-	-/bin/cp local.* $@/$(notdir $(CURDIR)) 
+	-/bin/cp local.* $@/$(notdir $(CURDIR))
 	cd $@/$(notdir $(CURDIR)) && $(MAKE)
 
 subclone:
@@ -118,8 +156,23 @@ subclone:
 	-/bin/rm -rf subclone_dir
 	mkdir subclone_dir
 	cd subclone_dir && grep url ../.git/config | perl -npe "s/url =/git clone/; s/.git$$//" | sh
-	cd subclone_dir/* && $(MAKE) Makefile && $(MAKE)
+	d subclone_dir/* && $(MAKE) Makefile && $(MAKE)
 
-local.mk:
-	-/bin/cp $(gitroot)/local/local.mk .
-	touch $@
+##################################################################
+
+# Branching
+
+%.branch: sync
+	git checkout $*
+
+%.newbranch: sync
+	-git branch -d $*
+	git checkout -b $*
+	$(MAKE) newpush
+
+update: sync
+	git merge $(cmain)
+
+%.nuke:
+	git branch -D $*
+	git push origin --delete $*
