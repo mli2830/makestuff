@@ -1,8 +1,8 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
-### Diphthong
 # Archimedes
+### Diphthong
 
 cmain = dev
 
@@ -135,7 +135,7 @@ updatebranch: sync
 	git branch -D $*
 	git push origin --delete $*
 
-upmerge: updatebranch
+upmerge: 
 	git checkout $(cmain)
 	git pull
 	git merge $(BRANCH)
