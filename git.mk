@@ -65,11 +65,6 @@ abort:
 sync: 
 	git push origin $(BRANCH)
 
-pull: commit.txt
-	git fetch
-	git rebase origin $(BRANCH)
-	touch $<
-
 sync:
 	$(MAKE) pull
 	$(MAKE) push
