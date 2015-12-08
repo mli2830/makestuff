@@ -8,6 +8,7 @@ cmain = NULL
 cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
+-include $(BRANCH).mk
 
 ##################################################################
 
@@ -17,12 +18,16 @@ newpush: commit.txt
 	git push -u origin $(BRANCH)
 
 push: commit.txt
-	git push origin $(BRANCH)
+	git push
 
 pull: commit.txt
 	git fetch
-	git rebase origin $(BRANCH)
+	git rebase origin/$(BRANCH)
 	touch $<
+
+#### Branching ####
+
+### Trees are green
 
 sync:
 	$(MAKE) pull
@@ -110,15 +115,11 @@ subclone:
 	-/bin/rm -rf subclone_dir
 	mkdir subclone_dir
 	cd subclone_dir && grep url ../.git/config | perl -npe "s/url =/git clone/; s/.git$$//" | sh
-	cd subclone_dir/* && $(MAKE) Makefile && $(MAKE)
+	d subclone_dir/* && $(MAKE) Makefile && $(MAKE)
 
 ##################################################################
 
 # Branching
-
-dev.branch: commit.txt
-	git checkout dev
-
 %.branch: sync
 	git checkout $*
 
@@ -128,8 +129,18 @@ dev.branch: commit.txt
 	$(MAKE) newpush
 
 update: sync
-	git merge $(cmain)
+	git rebase $(cmain) 
+	git push origin --delete $*
+	git push -u origin $*
 
 %.nuke:
 	git branch -D $*
 	git push origin --delete $*
+
+upmerge: 
+	git rebase $(cmain) 
+	git checkout $(cmain)
+	git pull
+	git merge $(BRANCH)
+	git push -u origin $(cmain)
+	$(MAKE) $(BRANCH).nuke
