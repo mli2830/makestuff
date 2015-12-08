@@ -1,9 +1,6 @@
 ### Git for _centralized_ workflow
 ### Trying to generalize now
 
-# Archimedes
-### Diphthong
-
 cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
@@ -139,5 +136,6 @@ upmerge:
 	git checkout $(cmain)
 	git pull
 	git merge $(BRANCH)
-	git push
+	git push -u origin $(cmain)
 	$(MAKE) $(BRANCH).nuke
+
