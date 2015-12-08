@@ -131,6 +131,8 @@ subclone:
 
 updatebranch: sync
 	git rebase $(cmain) 
+	git push origin --delete $*
+	git push -u origin $*
 
 %.nuke:
 	git branch -D $*
