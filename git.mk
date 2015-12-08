@@ -2,10 +2,6 @@
 ### Trying to generalize now
 
 cmain = NULL
-## This is a test
-### This text is good!
-
-cmain = dev
 
 BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 -include $(BRANCH).mk
@@ -26,11 +22,19 @@ push: commit.txt
 	git push -u origin $(BRANCH)
 
 pull: commit.txt
+	git pull
+	touch $<
+
+rebase: commit.txt
 	git fetch
 	git rebase origin/$(BRANCH)
 	touch $<
 
 sync:
+	$(MAKE) rebase
+	$(MAKE) push
+
+psync:
 	$(MAKE) pull
 	$(MAKE) push
 
