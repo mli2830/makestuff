@@ -25,36 +25,6 @@ pull: commit.txt
 
 ### Trees are green
 
-%.branch:
-	$(MAKE) commit.txt
-	git checkout $*
-
-%.newbranch:
-	-git branch -d $*
-	git branch $*
-	$(MAKE) $*.branch
-	$(MAKE) newpush
-
-%.nuke:
-	git branch -D $*
-	git push origin --delete $*
-
-## FrogS!
-
-updatebranch: sync
-	git rebase $(cmain) 
-
-fullmerge: updatebranch
-	git pull
-	git checkout $(cmain)
-	git pull
-	git pull origin $(BRANCH)
-	git push
-
-future:
-	git branch -d $(BRANCH)
-	git push origin --delete $(BRANCH)
-
 sync:
 	$(MAKE) pull
 	$(MAKE) push
@@ -161,3 +131,17 @@ update: sync
 %.nuke:
 	git branch -D $*
 	git push origin --delete $*
+
+updatebranch: sync
+	git rebase $(cmain) 
+
+fullmerge: updatebranch
+	git pull
+	git checkout $(cmain)
+	git pull
+	git pull origin $(BRANCH)
+	git push
+
+future:
+	git branch -d $(BRANCH)
+	git push origin --delete $(BRANCH)
