@@ -10,11 +10,6 @@ BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
 ### Push and pull
 
-%.newbranch:
-	git checkout -b $*
-	$(MAKE) commit.txt
-	git push -u origin $(BRANCH)
-
 newpush: commit.txt
 	git push -u origin master
 
@@ -125,6 +120,11 @@ subclone:
 ##################################################################
 
 # Branching
+%.newbranch:
+	git checkout -b $*
+	$(MAKE) commit.txt
+	git push -u origin $(BRANCH)
+
 %.branch: sync
 	git checkout $*
 
