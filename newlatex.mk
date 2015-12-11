@@ -19,6 +19,7 @@ reset_deps:
 	touch $@
 	$(MAKE) $*.ltx
 
+.PRECIOUS: .deps/%.d
 .deps/%.d: % $(ms)/latexdeps.pl
 	$(PUSHSTAR)
 

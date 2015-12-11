@@ -6,6 +6,9 @@
 	$(MAKE) $*
 	acroread /a "zoom=165" $* &
 
+%.png: %.pdf
+	convert $< $@
+
 MVF = /bin/mv -f
 MV = /bin/mv
 CP = /bin/cp

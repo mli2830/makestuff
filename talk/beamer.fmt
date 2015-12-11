@@ -1,0 +1,89 @@
+# %% Takes whole rest of P.
+# %! Discards whole rest of P.
+# %| Takes "sentence"
+# %_ Takes optional line
+# %^ Takes optional word
+# % Takes word
+
+# Comments
+NO %!
+COMMENT %!
+
+# Document structure
+
+SEC NOFRAME \section{%%}
+SUB NOFRAME \subsection{%%}
+TOC \tableofcontents
+
+TSEC \section{%+} SLIDESTART \frametitle{%%}
+TSUB \subsection{%+} SLIDESTART \frametitle{%%}
+
+# Back-compatibility
+SECTION ^SEC %%
+TSS ^TSUB %%
+SUBS ^SUB %%
+
+## Slides (separated by hlines)
+!SLIDESEP \n-{60,}|SLIDEBREAK
+!BSL \begin{frame}
+!ESL \end{frame}
+
+# Slide structure
+DEFHEAD \frametitle{%%}
+DEFCOMM %%
+HEAD \frametitle{%%}
+SUBH \framesubtitle{%%}
+CC {\begin{center} %% \end{center}}
+SPACE \mbox{}
+
+# Lecture structure
+NULL NULLSLIDE
+NOSLIDE NULLSLIDE
+
+## Columns
+
+BC \begin{columns}[c] \column{0.45\textwidth}
+NC \column{0.45\textwidth}
+EC \end{columns}
+
+PAUSE \pause
+
+# Input
+PORT \bc\vsp\psfig{figure=%,width=%^\hfsize}\vsp\ec
+LAND \bc\psfig{figure=%,height=%^\hfsize, angle=270}\ec
+SLIP \input %
+
+## Includegraphics style 
+
+FIG  \bc\vsp\includegraphics[height=\vfsize]{%}\vsp\ec
+SQUAREFIG  \bc\includegraphics[height=\vfsize]{%}\vsp\ec
+SCALEFIG  \bc\vsp\includegraphics[height=%^\vfsize]{%}\vsp\ec
+PSCALEFIG  \bc\pfsp\includegraphics[width=%^\vfsize,angle=270]{%}\ec
+
+LINEFIG  \includegraphics[height=%^\vfsize]{%}
+FINEFIG  \pause\includegraphics[height=%^\vfsize]{%} NOPAR
+
+SIGHFIG  \bc\vsp\includegraphics[height=%^\vfsize]{%}\vsp\ec
+HIGHFIG  ^SIGHFIG 1 %%
+WHYFIG  ^SIGHFIG 1.3 %%
+
+WIDEFIG  \bc\vsp\includegraphics[width=\hfsize]{%}\vsp\ec
+SIDEFIG  \bc\vsp\includegraphics[width=%^\hfsize]{%}\vsp\ec
+SIDEFIG  \bc\vsp\includegraphics[width=%^\hfsize]{%}\vsp\ec
+COLFIG \bc\vsp\includegraphics[width=0.45\hfsize]{%}\vsp\ec
+PFIG  \bc\pfsp\includegraphics[width=\vfsize,angle=270]{%}\ec
+
+CREDIT {\small \emph{%%}}
+
+UP \vspace{-%}
+DOWN \vspace{%}
+
+# Itemization
+!TAB \t
+!BIZ \begin{itemize}
+!EIZ \end{itemize}
+!ITEM \pause\item
+
+!END END
+!START START
+

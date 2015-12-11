@@ -1,0 +1,19 @@
+DEFCOMM %!
+
+!SLIDESEP \n-{60,}|SLIDEBREAK
+!BSL \n\n
+!ESL \n\n
+
+SEC \section{%%}
+SUB \subsection{%%}
+
+TSEC \section{%+}\n\n\indent * %%
+TSUB \subsection{%+}\n\n\indent * %%
+
+SECTION ^SEC %%
+SUBS ^SUB %%
+TSS ^TSUB %%
+
+DEFHEAD \indent * %%
+HEAD \indent * %%
+SUBH \indent ** %%
