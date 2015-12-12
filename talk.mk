@@ -1,6 +1,7 @@
 
 $(format_files):
 	/bin/cp -f $(talkdir)/$@ .
+	chmod a-w $@
 
 bdraft.fmt: beamer.fmt $(talkdir)/bd.pl
 	$(PUSH)
