@@ -39,7 +39,7 @@ Sources += visual.mk oldlatex.mk RR.mk wrapR.mk perl.def compare.mk
 
 Sources += newlatex.mk latexdeps.pl RR/pdf.mk
 
-Sources += talk.mk $(wildcard talk/*.*)
+Sources += talk.def talk.mk $(wildcard talk/*.*)
 
 ######################################################################
 
