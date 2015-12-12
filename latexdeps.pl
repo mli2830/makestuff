@@ -3,7 +3,7 @@ use 5.10.0;
 
 undef $/;
 
-my $basename = shift(@ARGV);
+my $basename = $ARGV[0];
 $basename =~ s/\.tex$//;
 
 my $f = <>;

@@ -10,18 +10,22 @@ include $(wildcard .deps/*.d)
 .deps:
 	mkdir $@
 
+## Does not work when you need it to (the loops go too deep)
 reset_deps:
-	$(RM) deps/*.d
+	-$(RM) .deps/*.d
+	-$(RM) .deps/*.dd
 
 .PRECIOUS: %.aux
 %.aux: %.tex .deps
-	$(MAKE) .deps/$<.d
+	perl -wf $(ms)/latexdeps.pl $< > .deps/$<.d
 	touch $@
 	$(MAKE) $*.ltx
 
-.PRECIOUS: .deps/%.d
-.deps/%.d: % $(ms)/latexdeps.pl
-	$(PUSHSTAR)
+### Not used. Leftover from a more aggressive paradigm.
+.PRECIOUS: .deps/%.dd
+.deps/%.dd: % $(ms)/latexdeps.pl
+	$(PUSH)
+	cp $@ .deps/$*.d
 
 %.pdf: %.tex
 	touch $<

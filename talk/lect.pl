@@ -80,6 +80,7 @@ foreach(@tex){
  
 		# Underscores
 		# Latex math Trick: EM does not span tab.
+		# E.g. !EM \emph{%}
 		if (defined $spec{EM}){
 			my @em = split /%/, $spec{EM};
 			s/_([A-Za-z0-9 .,;-]*)_/$em[0]$1$em[1]/g;

@@ -1,4 +1,3 @@
-
 $(format_files):
 	/bin/cp -f $(talkdir)/$@ .
 	chmod a-w $@
