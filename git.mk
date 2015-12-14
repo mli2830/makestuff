@@ -115,7 +115,7 @@ subclone:
 	-/bin/rm -rf subclone_dir
 	mkdir subclone_dir
 	cd subclone_dir && grep url ../.git/config | perl -npe "s/url =/git clone/; s/.git$$//" | sh
-	d subclone_dir/* && $(MAKE) Makefile && $(MAKE)
+	cd subclone_dir/* && $(MAKE) Makefile && $(MAKE)
 
 ##################################################################
 
