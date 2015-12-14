@@ -31,7 +31,7 @@ Sources += linux.mk windows.mk
 
 # Git makefile for this and other projects
 
-Sources += git.mk git.def
+Sources += git.mk git.def repos.mk
 
 # Makefiles and resources for other projects
 
