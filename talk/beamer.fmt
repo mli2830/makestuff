@@ -28,6 +28,8 @@ SUBS ^SUB %%
 !BSL \begin{frame}
 !ESL \end{frame}
 
+!EM \emph{%}
+
 # Slide structure
 DEFHEAD \frametitle{%%}
 DEFCOMM %%
@@ -56,7 +58,6 @@ SLIP \input %
 ## Includegraphics style 
 
 FIG  \bc\vsp\includegraphics[height=\vfsize]{%}\vsp\ec
-SCALEFIG  \bc\vsp\includegraphics[height=%^\vfsize]{%}\vsp\ec
 
 LINEFIG  \includegraphics[height=%^\vfsize]{%}
 FINEFIG  \pause\includegraphics[height=%^\vfsize]{%} NOPAR
@@ -69,7 +70,7 @@ WHYFIG  ^SIGHFIG 1.3 %%
 
 SIDEFIG  \bc\vsp\includegraphics[width=%^\hfsize]{%}\vsp\ec
 WIDEFIG  ^SIDEFIG 1 %%
-COLFIG ^SIDEFIG 0.5 %%
+COLFIG ^SIDEFIG 0.7 %%
 
 SPORTFIG  \bc\pfsp\includegraphics[width=%^\vfsize,angle=270]{%}\ec
 PORTFIG  ^SPORTFIG 1 %%
