@@ -3,7 +3,7 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: now 
+target pngtarget pdftarget vtarget acrtarget: perltest.out 
 
 ##################################################################
 
@@ -11,6 +11,9 @@ now:
 	@echo $(BRANCH)
 
 ms = ../makestuff
+
+perltest.out: perltest.pl
+	$(PUSH)
 
 # Base files
 
@@ -63,7 +66,7 @@ include git.mk
 
 # Developing newlatex
 
-# include perl.def
+include perl.def
 # include newlatex.mk
 
 # test.pdf: test.tex latexdeps.pl

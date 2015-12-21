@@ -7,23 +7,52 @@ my $basename = $ARGV[0];
 $basename =~ s/\.tex$//;
 
 my $f = <>;
+my (%inputs, %packages, %graphics, %bibs, %dirs);
 
 while ($f =~ s/\\input\s*{(.*?)}//){
-	say "$basename.tex: $1 .deps/$1.d";
+	$inputs{$1}=0;
+}
+
+## packages are tracked only for their directory
+while ($f =~ s/\\input\s*{(.*?)}//){
+	$packages{$1}=0;
 }
 
 while ($f =~ s/\\includegraphics\s*{(.*?)}//){
-	say "$basename.tex: $1";
+	$graphics{$1}=0;
 }
 
 while ($f =~ s/\\includegraphics\s*\[[^\]]*]\s*{(.*?)}//){
-	say "$basename.tex: $1";
+	$graphics{$1}=0;
 }
 
 while ($f =~ s/\\bibliography\s*{(.*?)}//){
-	say "$basename.pdf: $basename.bbl";
 	my @biblist = split /,\s*/, $1;
-	@biblist= map {s/\.bib$//; $_} @biblist;
-	@biblist= map {s/$/.bib/; $_} @biblist;
-	say "$basename.bbl: " . join " ", @biblist;
+	@biblist= map {s/\.bib$//; s/$/.bib/; $_} @biblist;
+	foreach (@biblist){
+		$bibs{$_}=0;
+	}
 }
+
+if (%inputs){
+	say "$basename.tex: ", join " ", keys %inputs;
+	my @deps = map {s|^|.deps/|; s|$|.d|; $_} keys %inputs;
+	say "$basename.tex: ", join " ", @deps, "\n";
+}
+
+if (%graphics){
+	say "$basename.pdf: ", join " ", keys %graphics, "\n";
+}
+
+if (%bibs){
+	say "$basename.pdf: $basename.bbl";
+	say "$basename.bbl: " . join " ", keys %bibs, "\n";
+}
+
+foreach(keys %inputs, keys %packages, keys %graphics, keys %bibs)
+{
+	s|/*[^/]*$||;
+	$dirs{$_} = $_ if $_;
+}
+
+say "$basename.tex: ", join " ", keys %dirs;
