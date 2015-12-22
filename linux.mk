@@ -20,3 +20,4 @@ LN = /bin/ln -s
 
 copy = $(CP) $< $@
 ccrib = $(CP) $(crib)/$@ .
+convert = convert $< $@
