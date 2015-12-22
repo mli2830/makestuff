@@ -90,6 +90,8 @@ clean_dir:
 	mkdir .$@
 	$(MV) $(filter-out $(Sources) local.mk $(wildcard *.makestuff), $(wildcard *.*)) .$@
 
+
+### Not clear whether these rules actually play well together!
 clean_both: clean_repo clean_dir
 
 $(Outside):
