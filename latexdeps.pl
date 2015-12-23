@@ -14,8 +14,11 @@ while ($f =~ s/\\input\s*{(.*?)}//){
 }
 
 ## packages are tracked only for their directory
-while ($f =~ s/\\input\s*{(.*?)}//){
-	$packages{$1}=0;
+while ($f =~ s/\\usepackage\s*{(.*?)}//){
+	my @packlist = split /,\s*/, $1;
+	foreach (@packlist){
+		$packages{$_}=0;
+	}
 }
 
 while ($f =~ s/\\includegraphics\s*{(.*?)}//){
