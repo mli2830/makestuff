@@ -33,8 +33,8 @@ psync:
 	$(MAKE) pull
 	$(MAKE) push
 
-commit.txt: $(Sources) $(Archive)
-	git add -f $^
+commit.txt: $(Sources)
+	git add -f $^ $(Archive)
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@
 	-git commit --dry-run >> $@
 	gvim -f $@
