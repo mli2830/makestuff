@@ -58,4 +58,4 @@ foreach(keys %inputs, keys %packages, keys %graphics, keys %bibs)
 	$dirs{$_} = $_ if $_;
 }
 
-say "$basename.tex: ", join " ", keys %dirs;
+say "# $basename.tex: ", join " ", keys %dirs;
