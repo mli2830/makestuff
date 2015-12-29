@@ -44,6 +44,8 @@ Sources += newlatex.mk latexdeps.pl RR/pdf.mk forms.mk
 
 Sources += talk.def talk.mk $(wildcard talk/*.*)
 
+Sources += lect.mk $(wildcard lect/*.*)
+
 ######################################################################
 
 # RR scripts
