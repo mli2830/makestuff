@@ -10,3 +10,4 @@ LN = /bin/ln -s
 copy = $(CP) $< $@
 ccrib = $(CP) $(crib)/$@ .
 convert = convert $< $@
+shell_execute = sh < $@
