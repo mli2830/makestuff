@@ -1,3 +1,7 @@
+## Current situation is a mess. 
+## Right now we can't include any tex files, because latexdeps will create direct dependencies that we don't know how to fill
+## Need to decide what to do about inclusions from other directories before we address this. I'm thinking now to simply change latexdeps to get the right (indirect) dependency, but _only_ when no path is given.
+
 latex = pdflatex
 
 include $(wildcard .deps/*.d)
@@ -8,40 +12,25 @@ define ltx
 	diff .$*.aux $*.aux > /dev/null || touch $*.aux
 endef
 
-### Not using this now; we want an explicit rule for the .deps, for chaining
-define ltxdeps
-	perl -wf $(ms)/latexdeps.pl $*.tex > .deps/$*.tex.d
-endef
+### Making the dependency files. We always want to include them, but don't want make to chain and try to make them.
 
-.deps/%.tex.d: %.tex $(ms)/latexdeps.pl
+### Make ./%.deps in the current directory, to be examined when we need it, and deleted otherwise. Hopefully, make can delete it automatically unless we ask for it explicitly
+
+%.tex.deps: %.tex $(ms)/latexdeps.pl
 	$(PUSH)
-
-%.deps: .deps/%.d
-	$(copy)
+	$(MAKE) .deps
+	$(CP) $@ .deps/$<.d
 
 .deps:
 	mkdir $@
 
-## Does not work when you need it to (the loops go too deep)
-## Or maybe it's better now without the .dd?
-reset_deps:
-	-$(RM) .deps/*.d
-	-$(RM) .deps/*.dd
-
 .PRECIOUS: %.aux
 %.aux: %.tex .deps
-	$(MAKE) .deps/$<.d
+	$(MAKE) $<.deps
 	touch $@
 	$(ltx)
 
-### Not used. Leftover from a more aggressive paradigm.
-### The .dd is sabotage
-.PRECIOUS: .deps/%.dd
-.deps/%.dd: % $(ms)/latexdeps.pl
-	$(PUSH)
-	cp $@ .deps/$*.d
-
-%.pdf: %.tex %.aux
+%.pdf: %.tex
 	touch $<
 	$(MAKE) $*.aux
 #	diff .$< $< > /dev/null || $(MAKE) $*.ltx
@@ -50,6 +39,9 @@ reset_deps:
 	$(ltx)
 	/bin/rm -f $@
 	bibtex $*
+
+reset_deps:
+	$(RMR) .deps/*.d *.deps
 
 tclean:
 	$(RM) *.aux *.bbl

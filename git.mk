@@ -10,17 +10,17 @@ BRANCH = $(shell cat .git/HEAD | perl -npE "s|.*/||;")
 
 ### Push and pull
 
-newpush: commit.txt
+newpush: commit.time
 	git push -u origin master
 
-push: commit.txt
+push: commit.time
 	git push -u origin $(BRANCH)
 
-pull: commit.txt
+pull: commit.time
 	git pull
 	touch $<
 
-rebase: commit.txt
+rebase: commit.time
 	git fetch
 	git rebase origin/$(BRANCH)
 	touch $<
@@ -33,7 +33,7 @@ psync:
 	$(MAKE) pull
 	$(MAKE) push
 
-commit.txt: $(Sources)
+commit.time: $(Sources)
 	git add -f $^ $(Archive)
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@
 	-git commit --dry-run >> $@
@@ -124,7 +124,7 @@ subclone:
 # Branching
 %.newbranch:
 	git checkout -b $*
-	$(MAKE) commit.txt
+	$(MAKE) commit.time
 	git push -u origin $(BRANCH)
 
 %.branch: sync

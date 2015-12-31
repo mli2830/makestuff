@@ -1,0 +1,235 @@
+# Rules for .format files
+## Lines starting with # are comments
+## General rules follow identifiers and are associated generally with the identifier
+## Specific rules follow a list of format names ended by a colon
+## A general rule with no colon need not be preceded by a blank line
+
+# Formatting rules for .fmt
+## %% Takes whole rest of P.
+## %+ Uses P. without taking
+## %! Discards whole rest of P.
+## %| Takes "sentence"
+## %_ Takes optional line
+## %^ Takes optional word
+## % Takes word
+
+# Input stuff (should never require specific rules)
+
+!SLIDESEP ----------------+
+!TAB \t
+outline: NULL
+
+# COLSEP does not work! Yet!
+# !COLSEP =====================+
+
+# Itemization
+
+!ITEM \item
+outline: NULL
+
+!BIZ \begin{itemize}
+final: \begin{itemize}[<+-| alert@+>]
+outline: NULL
+
+!EIZ \end{itemize}
+outline: NULL
+
+# Output slide separators
+!BSL \begin{frame}
+webnotes: NULL
+complete handouts: \pagebreak[3]
+outline: NULL
+
+!ESL \end{frame}
+webnotes complete handouts: \n\n
+final: \uncover<+->\mbox{}\end{frame}
+outline: \n
+
+########################################
+
+# Sectioning
+
+INTRO \section*{Bio 3SS Introductory material}
+draft final: NOFRAME \title{Introductory material}
+
+CHAPTER \section*{Bio 3SS Unit %%}
+draft final: NOFRAME \title{%%}
+
+SEC \section{%%}
+draft final: NOFRAME \section{%%}
+
+HANDOUTPART NOFRAME
+handouts: NOFRAME \clearpage
+
+SS \subsection{%%}
+draft final: NOFRAME \subsection{%%}
+
+SSS \subsubsection{%%}
+draft final: NOFRAME \subsection{%%}
+
+DEFHEAD \noindent {\large\bf %%}
+draft final:\frametitle{%%} 
+outline: \indent * %%
+
+DEFCOMM %%
+outline: %!
+
+## Reuse section name as frame title in presentation
+
+TSEC ^SEC %%
+draft final: \section{%+} SLIDESTART \frametitle{%%}
+outline: \section{%+} \indent * %%
+
+TSS ^SS %%
+draft final: \subsection{%+} SLIDESTART \frametitle{%%}
+outline: \subsection{%+} \indent * %%
+
+TSSS ^SSS %%
+draft final: \subsubsection{%+} SLIDESTART \frametitle{%%}
+outline: \subsubsection{%+} \indent * %%
+
+NOSEC ^DEFHEAD %%
+webnotes complete handouts: \hrule\paragraph{%%} 
+
+########################################
+
+# Explicit content formatting
+
+# Answer slide for class only (and complete notes)
+ASLIDE %!
+handouts: NULLSLIDE
+draft final: ^DEFHEAD {\blue \sl \underline{%%}}
+webnotes complete: ^DEFHEAD {\underline{Extra slide}: \sl %%}
+
+# Comment slide for class only (and complete notes)
+CSLIDE %!
+handouts: NULLSLIDE
+draft final: ^DEFHEAD {\sl %%}
+webnotes complete: ^DEFHEAD {\underline{Comment slide}: \sl %%}
+
+# Slide for notes only (e.g., resource information)
+NSLIDE ^DEFHEAD %%
+draft final: NULLSLIDE
+
+# Slides with purely repetitive information (for classroom exposition)
+RSLIDE NULLSLIDE
+webnotes draft final: ^DEFHEAD {\sl %%}
+
+# Short version for class, should go with NOTES
+SHORT ^%%
+handouts final: %!
+
+NOTES ^%%
+draft final: %!
+
+#  Placeholders in the notes don't need to be repeated in complete notes
+NOTESONLY %!
+handouts: ^%%
+
+# NOTESONLY May go with stuff that's withheld, but not really an answer
+HOLD ^%%
+handouts outline: %!
+
+# CLASS is something only for class (like a picture). 
+CLASS %!
+draft final: ^%%
+
+# Table of contents for lectures
+TOC %!
+draft final: \frametitle{Chapter outline}\tableofcontents[hideallsubsections]
+
+########################################
+
+# Logical content formatting
+
+ANS 
+handouts: \mbox{}%!
+webnotes complete: {\bf\underline{Answer}: }%%
+final: * \uncover<+->{\color{blue} %%}
+draft: * {\color{blue} %%}
+outline: %!
+
+## An answer space in the notes only (answer uncertain or not specified yet in lecture)  
+NOANS ^ANS %%
+final draft: %!
+
+## An answer space in the slides only (short answers)
+SLIDEANS ^ANS %%
+handouts: %!
+outline: %!
+
+## Mark an answer in a multiple-choice question
+STAR %%
+draft: {\color{blue} %%}
+final: {\color<6>{blue} %%}
+webnotes complete: * %%
+
+# Trick appears only in slides 
+TRICK %!
+draft final: %% 
+
+# Comments are shown in class, but not in the notes
+COMMENT %!
+webnotes complete: {\em\underline{Comment}: }%%
+draft final: {\sl %%}
+
+########################################
+
+# Columns
+
+BC %!
+draft final: \begin{columns}[c] \column{0.54\textwidth} \small
+
+NC %!
+draft final: \column{0.4\textwidth}
+
+EC %!
+draft final: \end{columns}
+
+########################################
+
+# Pictures
+
+HFIG \includegraphics[height=%\textheight]{%}
+outline: %!
+
+FIG ^HFIG 0.4 %%
+draft final: ^HFIG 0.8 %%
+
+PAUSE %!
+final: \pause
+
+WIDEFIG %!
+draft final: \includegraphics[width=%\textwidth]{%}
+
+SIDEFIG ^WIDEFIG 1.0 %%
+
+DOUBLEFIG \begin{minipage}{\dfwidth} \centering \n\includegraphics[height=\dfheight]{%} \end{minipage} \hspace{\dfsep} \begin{minipage}{\dfwidth} \centering \n\includegraphics[height=\dfheight]{%} \end{minipage}
+webnotes: \includegraphics[height=0.5\textheight]{%}\n\n\includegraphics[height=0.5\textheight]{%}
+outline: %!
+
+DOUBLEPDF ^DOUBLEFIG %+-0.pdf %-1.pdf
+
+INPUT \input{%} %%
+outline: %!
+
+### hyperlinks
+
+HLINK \url{%%}
+outline: %!
+
+HREF \href{%}{%%}
+draft final: \href{%}{\color{linkcolor}%%}
+outline: %!
+
+## Notes for myself
+NEWFIG %!
+
+## NEWPOLL needs to be displayed, because I might push the question to notes before I make it into a real poll
+NEWPOLL %%
+
+POLL \href{%}{%%}
+draft final: Poll: \href{https://www.polleverywhere.com/free_text_polls/%}{\color{pollcolor}%%}
+outline: %!
+
+INPUT \input{%%}
