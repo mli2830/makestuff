@@ -33,6 +33,7 @@ psync:
 	$(MAKE) pull
 	$(MAKE) push
 
+## The archive thing is confusing ... don't want to remake them all the time, but don't want to crash if they're not present. 
 commit.time: $(Sources)
 	git add -f $^ $(Archive)
 	echo "Autocommit ($(notdir $(CURDIR)))" > $@

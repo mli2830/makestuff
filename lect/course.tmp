@@ -1,0 +1,9 @@
+\documentclass[12pt]{article}
+\usepackage{url,hyperref}
+\setlength{\parskip}{1.4ex}
+\setlength{\parindent}{0em}
+\begin{document}
+
+----------------------------------------------------------------------
+
+\end{document}
