@@ -1,0 +1,16 @@
+# Input
+!TAB \t
+
+# Itemization
+!ITEM \item
+!BIZ \begin{itemize}
+!EIZ \end{itemize}
+
+# Logical formatting
+TITLE {\Large\bf\sf\centering %%\n\n}
+SUBTITLE {\sf\large\centering %%\n\n}
+SECT {\vspace{2ex}\large\bf %%}
+SECT {\subsection*{%%}}
+NOTE {\small \em %_} %%
+TOPIC {\bf %_:} %%
+SUBTOPIC {\sl %_:} %%
