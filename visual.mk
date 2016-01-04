@@ -13,3 +13,6 @@ vtarget:
 acrtarget:
 	$(MAKE) $<.acr
 
+pushtarget:
+	$(MAKE) $<.push
+

@@ -116,7 +116,7 @@ RSLIDE NULLSLIDE
 webnotes draft final: ^DEFHEAD {\sl %%}
 
 # Short version for class, should go with NOTES
-SHORT ^%%
+SHORT {\color{shortcolor}%%}
 handouts final: %!
 
 NOTES ^%%
@@ -222,6 +222,8 @@ HREF \href{%}{%%}
 draft final: \href{%}{\color{linkcolor}%%}
 outline: %!
 
+MATREF ^HREF https://bio3ss.github.io/materials/% %%
+
 ## Notes for myself
 NEWFIG %!
 
@@ -229,7 +231,7 @@ NEWFIG %!
 NEWPOLL %%
 
 POLL \href{%}{%%}
-draft final: Poll: \href{https://www.polleverywhere.com/free_text_polls/%}{\color{pollcolor}%%}
+draft final: Poll: \href{https://www.polleverywhere.com/%}{\color{pollcolor}%%}
 outline: %!
 
 INPUT \input{%%}
