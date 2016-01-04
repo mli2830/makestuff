@@ -98,7 +98,7 @@ webnotes complete handouts: \hrule\paragraph{%%}
 # Answer slide for class only (and complete notes)
 ASLIDE %!
 handouts: NULLSLIDE
-draft final: ^DEFHEAD {\blue \sl \underline{%%}}
+draft final: ^DEFHEAD {\sl \underline{%%}}
 webnotes complete: ^DEFHEAD {\underline{Extra slide}: \sl %%}
 
 # Comment slide for class only (and complete notes)
