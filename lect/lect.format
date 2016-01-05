@@ -199,10 +199,10 @@ draft final: ^HFIG 0.8 %%
 PAUSE %!
 final: \pause
 
-WIDEFIG %!
+SIDEFIG %!
 draft final: \includegraphics[width=%\textwidth]{%}
 
-SIDEFIG ^WIDEFIG 1.0 %%
+WIDEFIG ^SIDEFIG 1.0 %%
 
 DOUBLEFIG \begin{minipage}{\dfwidth} \centering \n\includegraphics[height=\dfheight]{%} \end{minipage} \hspace{\dfsep} \begin{minipage}{\dfwidth} \centering \n\includegraphics[height=\dfheight]{%} \end{minipage}
 webnotes: \includegraphics[height=0.5\textheight]{%}\n\n\includegraphics[height=0.5\textheight]{%}
