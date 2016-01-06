@@ -6,8 +6,8 @@
 
 msrepo = https://github.com/dushoff
 gitroot = ../
-export ms = $(gitroot)/makestuff
+export ms = makestuff/
 
 -include local.mk
 -include $(gitroot)/local.mk
-export ms = $(gitroot)/makestuff
+export ms = makestuff/
