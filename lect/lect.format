@@ -117,7 +117,7 @@ webnotes draft final: ^DEFHEAD {\sl %%}
 
 # Short version for class, should go with NOTES
 SHORT {\color{shortcolor}%%}
-handouts final: %!
+handouts complete: %!
 
 NOTES ^%%
 draft final: %!
